@@ -1,0 +1,33 @@
+package com.sample
+import org.kie.api.runtime.*
+import com.sample.Interface;
+ 
+declare enum Questions
+	FIRST("first question"),
+	SECOND("second question");
+	
+	questionValue : String
+end
+
+declare enum Infos
+	FIRST_Y_SECOND_Y("First - yes; Second - yes"),
+	FIRST_Y_SECOND_N("First - yes; Second - no"),
+	FIRST_NO("First - no");
+	
+	info : String
+end
+
+declare Question
+	question : Questions
+	answer : int
+end
+
+function void askQuestion(Questions question, KieRuntime krt) {
+	int n = Interface.askQuestion(question.getQuestionValue());
+	Question q = new Question(question, n);
+	krt.insert(q);
+}
+
+function void showInfo(Infos info) {
+	Interface.showInfo(info.getInfo());
+} 

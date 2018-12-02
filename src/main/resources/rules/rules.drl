@@ -1,0 +1,40 @@
+package com.sample
+
+rule "init"
+	when
+	then
+    	askQuestion(Questions.FIRST,kcontext.getKieRuntime());
+end
+		
+
+rule "first question - yes"
+    when
+    	q : Question(question == Questions.FIRST, answer == 1)
+    then
+    	askQuestion(Questions.SECOND,kcontext.getKieRuntime()); 
+end
+
+rule "first - no"
+	when
+		Question(question == Questions.FIRST, answer == 0)
+	then
+		showInfo(Infos.FIRST_NO);
+end
+
+rule "first - yes, second - yes"
+	when
+		Question(question == Questions.FIRST, answer == 1)
+		Question(question == Questions.SECOND, answer == 1)
+	then
+		showInfo(Infos.FIRST_Y_SECOND_Y);
+end
+
+
+rule "first - yes, second - no"
+	when
+		Question(question == Questions.FIRST, answer == 1)
+		Question(question == Questions.SECOND, answer == 0)
+	then
+		showInfo(Infos.FIRST_Y_SECOND_N);
+end
+
