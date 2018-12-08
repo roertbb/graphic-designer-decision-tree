@@ -3,38 +3,314 @@ package com.sample
 rule "init"
 	when
 	then
-    	askQuestion(Questions.FIRST,kcontext.getKieRuntime());
-end
-		
-
-rule "first question - yes"
-    when
-    	q : Question(question == Questions.FIRST, answer == 1)
-    then
-    	askQuestion(Questions.SECOND,kcontext.getKieRuntime()); 
+    	askQuestion(Questions.LOVE_ART,kcontext.getKieRuntime());
 end
 
-rule "first - no"
-	when
-		Question(question == Questions.FIRST, answer == 0)
-	then
-		showInfo(Infos.FIRST_NO);
+rule "LOVE_ART - Yes"
+  when
+    Question(question == Questions.LOVE_ART, answer == 1)
+  then
+    showInfo(Infos.PASSED_FIRST_TEST);
+    askQuestion(Questions.CAN_DRAW,kcontext.getKieRuntime());
 end
 
-rule "first - yes, second - yes"
-	when
-		Question(question == Questions.FIRST, answer == 1)
-		Question(question == Questions.SECOND, answer == 1)
-	then
-		showInfo(Infos.FIRST_Y_SECOND_Y);
+rule "LOVE_ART - No"
+  when
+    Question(question == Questions.LOVE_ART, answer == 0)
+  then
+    showInfo(Infos.STOP_THIS_TABLE);
+    
+end
+      
+rule "CAN_DRAW - Yes"
+  when
+    Question(question == Questions.CAN_DRAW, answer == 1)
+  then
+    showInfo(Infos.DRAWING_SKILLS_IMPORTANT);
+    askQuestion(Questions.BALANCE,kcontext.getKieRuntime());
 end
 
-
-rule "first - yes, second - no"
-	when
-		Question(question == Questions.FIRST, answer == 1)
-		Question(question == Questions.SECOND, answer == 0)
-	then
-		showInfo(Infos.FIRST_Y_SECOND_N);
+rule "CAN_DRAW - No"
+  when
+    Question(question == Questions.CAN_DRAW, answer == 0)
+  then
+    showInfo(Infos.NO_NEED_CAN_DRAW);
+    askQuestion(Questions.PASSIONATE,kcontext.getKieRuntime());
+end
+      
+rule "BALANCE - Yes"
+  when
+    Question(question == Questions.BALANCE, answer == 1)
+  then
+    showInfo(Infos.SENSE_OF_BALANCE_SKILL);
+    askQuestion(Questions.UNDERSTANDING,kcontext.getKieRuntime());
 end
 
+rule "BALANCE - No"
+  when
+    Question(question == Questions.BALANCE, answer == 0)
+  then
+    showInfo(Infos.MOVE_TO_AUSTIN);
+    
+end
+      
+rule "PASSIONATE - Yes"
+  when
+    Question(question == Questions.PASSIONATE, answer == 1)
+  then
+    showInfo(Infos.WOULD_BE_NICE_BUT_OK);
+    askQuestion(Questions.BALANCE,kcontext.getKieRuntime());
+end
+
+rule "PASSIONATE - No"
+  when
+    Question(question == Questions.PASSIONATE, answer == 0)
+  then
+    showInfo(Infos.NOT_A_PATH_FOR_YOU);
+    askQuestion(Questions.CREATIVE,kcontext.getKieRuntime());
+end
+      
+rule "UNDERSTANDING - Yes"
+  when
+    Question(question == Questions.UNDERSTANDING, answer == 1)
+  then
+    showInfo(Infos.NOW_TALKIN);
+    askQuestion(Questions.VISUALLY_TRANSLATE,kcontext.getKieRuntime());
+end
+
+rule "UNDERSTANDING - No"
+  when
+    Question(question == Questions.UNDERSTANDING, answer == 0)
+  then
+    showInfo(Infos.COLOR_BLIND);
+    askQuestion(Questions.DESIRE_TO_LEARN,kcontext.getKieRuntime());
+end
+      
+rule "CREATIVE - Yes"
+  when
+    Question(question == Questions.CREATIVE, answer == 1)
+  then
+    showInfo(Infos.GOOD_IDEAS);
+    askQuestion(Questions.GOOD_WITH_PEOPLE_1,kcontext.getKieRuntime());
+end
+
+rule "CREATIVE - No"
+  when
+    Question(question == Questions.CREATIVE, answer == 0)
+  then
+    showInfo(Infos.TWINKIE_WITH_BOZO);
+    
+end
+      
+rule "DESIRE_TO_LEARN - Yes"
+  when
+    Question(question == Questions.DESIRE_TO_LEARN, answer == 1)
+  then
+    showInfo(Infos.NOW_TALKIN);
+    askQuestion(Questions.VISUALLY_TRANSLATE,kcontext.getKieRuntime());
+end
+
+rule "DESIRE_TO_LEARN - No"
+  when
+    Question(question == Questions.DESIRE_TO_LEARN, answer == 0)
+  then
+    showInfo(Infos.HEAD_TO_CAFETERIA);
+    
+end
+      
+rule "VISUALLY_TRANSLATE - Yes"
+  when
+    Question(question == Questions.VISUALLY_TRANSLATE, answer == 1)
+  then
+    showInfo(Infos.ROCK_STAR);
+    askQuestion(Questions.TAKE_CRITICISM,kcontext.getKieRuntime());
+end
+
+rule "VISUALLY_TRANSLATE - No"
+  when
+    Question(question == Questions.VISUALLY_TRANSLATE, answer == 0)
+  then
+    showInfo(Infos.UGH_NEED_TO_TRANSLATE);
+    askQuestion(Questions.DIRECTION_FROM_OTHERS,kcontext.getKieRuntime());
+end
+      
+rule "GOOD_WITH_PEOPLE_1 - Yes"
+  when
+    Question(question == Questions.GOOD_WITH_PEOPLE_1, answer == 1)
+  then
+    showInfo(Infos.CREATIVE_MANAGER);
+    
+end
+
+rule "GOOD_WITH_PEOPLE_1 - No"
+  when
+    Question(question == Questions.GOOD_WITH_PEOPLE_1, answer == 0)
+  then
+    showInfo(Infos.HOSTESS_PRODUCTS);
+    
+end
+      
+rule "DIRECTION_FROM_OTHERS - Yes"
+  when
+    Question(question == Questions.DIRECTION_FROM_OTHERS, answer == 1)
+  then
+    showInfo(Infos.NICE_SAVE);
+showInfo(Infos.ROCK_STAR);
+    askQuestion(Questions.TAKE_CRITICISM,kcontext.getKieRuntime());
+end
+
+rule "DIRECTION_FROM_OTHERS - No"
+  when
+    Question(question == Questions.DIRECTION_FROM_OTHERS, answer == 0)
+  then
+    showInfo(Infos.DELICIOUS_TREAT);
+    
+end
+      
+rule "TAKE_CRITICISM - Yes"
+  when
+    Question(question == Questions.TAKE_CRITICISM, answer == 1)
+  then
+    showInfo(Infos.NOT_EVERYONE);
+    askQuestion(Questions.MANAGE_TIME,kcontext.getKieRuntime());
+end
+
+rule "TAKE_CRITICISM - No"
+  when
+    Question(question == Questions.TAKE_CRITICISM, answer == 0)
+  then
+    showInfo(Infos.TROUBLE);
+    askQuestion(Questions.HONEST_WITH_YOURSELF,kcontext.getKieRuntime());
+end
+      
+rule "HONEST_WITH_YOURSELF - Yes"
+  when
+    Question(question == Questions.HONEST_WITH_YOURSELF, answer == 1)
+  then
+    showInfo(Infos.GET_OVER_BAD_SELF);
+    askQuestion(Questions.MANAGE_TIME,kcontext.getKieRuntime());
+end
+
+rule "HONEST_WITH_YOURSELF - No"
+  when
+    Question(question == Questions.HONEST_WITH_YOURSELF, answer == 0)
+  then
+    showInfo(Infos.SEE_SHRINK);
+    
+end
+      
+rule "MANAGE_TIME - Yes"
+  when
+    Question(question == Questions.MANAGE_TIME, answer == 1)
+  then
+    showInfo(Infos.THINGS_GOING_ON);
+    askQuestion(Questions.LOVE_CHALLENGE,kcontext.getKieRuntime());
+end
+
+rule "MANAGE_TIME - No"
+  when
+    Question(question == Questions.MANAGE_TIME, answer == 0)
+  then
+    showInfo(Infos.NOT_GOOD);
+    askQuestion(Questions.FOCUS_COMPLETION,kcontext.getKieRuntime());
+end
+      
+rule "FOCUS_COMPLETION - Yes"
+  when
+    Question(question == Questions.FOCUS_COMPLETION, answer == 1)
+  then
+    showInfo(Infos.GET_SOMETHING_DONE);
+    askQuestion(Questions.LOVE_CHALLENGE,kcontext.getKieRuntime());
+end
+
+rule "FOCUS_COMPLETION - No"
+  when
+    Question(question == Questions.FOCUS_COMPLETION, answer == 0)
+  then
+    showInfo(Infos.LOST_AT_THE_END);
+    
+end
+      
+rule "LOVE_CHALLENGE - Yes"
+  when
+    Question(question == Questions.LOVE_CHALLENGE, answer == 1)
+  then
+    showInfo(Infos.SIMPLIEST_MOST_DIFFICULT);
+    askQuestion(Questions.GOOD_WITH_PEOPLE_2,kcontext.getKieRuntime());
+end
+
+rule "LOVE_CHALLENGE - No"
+  when
+    Question(question == Questions.LOVE_CHALLENGE, answer == 0)
+  then
+    showInfo(Infos.EASY_ROUTE);
+    askQuestion(Questions.PERSISTENT,kcontext.getKieRuntime());
+end
+      
+rule "PERSISTENT - Yes"
+  when
+    Question(question == Questions.PERSISTENT, answer == 1)
+  then
+    showInfo(Infos.MUSCLE_THROUGH);
+    askQuestion(Questions.GOOD_WITH_PEOPLE_2,kcontext.getKieRuntime());
+end
+
+rule "PERSISTENT - No"
+  when
+    Question(question == Questions.PERSISTENT, answer == 0)
+  then
+    showInfo(Infos.NOT_CAREER_FOR_YOU);
+showInfo(Infos.MOVE_TO_AUSTIN);
+    
+end
+      
+rule "GOOD_WITH_PEOPLE_2 - Yes"
+  when
+    Question(question == Questions.GOOD_WITH_PEOPLE_2, answer == 1)
+  then
+    showInfo(Infos.INTERPERSONAL_SKILLS);
+    askQuestion(Questions.GRAPHIC_DESIGN_EVERY_DAY,kcontext.getKieRuntime());
+end
+
+rule "GOOD_WITH_PEOPLE_2 - No"
+  when
+    Question(question == Questions.GOOD_WITH_PEOPLE_2, answer == 0)
+  then
+    showInfo(Infos.GET_OUT_OF_YOUR_SHELL);
+    askQuestion(Questions.LIKE_PEOPLE,kcontext.getKieRuntime());
+end
+      
+rule "LIKE_PEOPLE - Yes"
+  when
+    Question(question == Questions.LIKE_PEOPLE, answer == 1)
+  then
+    
+    askQuestion(Questions.GRAPHIC_DESIGN_EVERY_DAY,kcontext.getKieRuntime());
+end
+
+rule "LIKE_PEOPLE - No"
+  when
+    Question(question == Questions.LIKE_PEOPLE, answer == 0)
+  then
+    showInfo(Infos.HAVE_ISSUES);
+    
+end
+      
+rule "GRAPHIC_DESIGN_EVERY_DAY - Yes"
+  when
+    Question(question == Questions.GRAPHIC_DESIGN_EVERY_DAY, answer == 1)
+  then
+    showInfo(Infos.FREAK_OF_NATURE);
+showInfo(Infos.GRAPHIC_DESIGNER);
+    
+end
+
+rule "GRAPHIC_DESIGN_EVERY_DAY - No"
+  when
+    Question(question == Questions.GRAPHIC_DESIGN_EVERY_DAY, answer == 0)
+  then
+    showInfo(Infos.DONT_WORRY);
+showInfo(Infos.GRAPHIC_DESIGNER);
+    
+end
+      

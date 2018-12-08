@@ -3,16 +3,67 @@ import org.kie.api.runtime.*
 import com.sample.Interface;
  
 declare enum Questions
-	FIRST("first question"),
-	SECOND("second question");
+	LOVE_ART("Do you love art?"),
+	CAN_DRAW("Can you draw?"),
+	BALANCE("Are you good at size and spatial balance between objects on page?"),
+	PASSIONATE("Are you passionate about art and graphic design?"),
+	UNDERSTANDING("Do you have a solid understanding of color theory?"),
+	CREATIVE("Are you creative?"),
+	DESIRE_TO_LEARN("Do you have a desire to continue to grow and learn?"),
+	VISUALLY_TRANSLATE("Can you visually translate a concept or idea?"),
+	GOOD_WITH_PEOPLE_1("Are you good with people?"),
+	DIRECTION_FROM_OTHERS("Are you good at taking direction from others?"),
+	TAKE_CRITICISM("Can you take criticism?"),
+	HONEST_WITH_YOURSELF("Are you able to be honest with yourself?"),
+	MANAGE_TIME("Do you manage your time well?"),
+	FOCUS_COMPLETION("Can you focus on a task with an eye towards completion?"),
+	LOVE_CHALLENGE("Do you love a challenge?"),
+	PERSISTENT("Are you persistent?"),
+	GOOD_WITH_PEOPLE_2("Are you good with people?"),
+	LIKE_PEOPLE("Do you even like people?"),
+	GRAPHIC_DESIGN_EVERY_DAY("Do you notice graphics design in every day life?");
 	
 	questionValue : String
 end
 
 declare enum Infos
-	FIRST_Y_SECOND_Y("First - yes; Second - yes"),
-	FIRST_Y_SECOND_N("First - yes; Second - no"),
-	FIRST_NO("First - no");
+	STOP_THIS_TABLE("Seriously? Then why did you stop at this table then? I think there is a shiny object floating up in the sky outside. Go stare at it and let me know if it moves."),
+	PASSED_FIRST_TEST("Great. You passed the first test. You are obviously smart and don't want to be like all those losers that we told to take a hike."),
+	NO_NEED_CAN_DRAW("Well, okay. You don't need to know how to draw if you have design skills."),
+	MOVE_TO_AUSTIN("Maybe a career in fine arts is more suited for you. Move to Austin and learn how to grow some sweet dreadlocks."),
+	NOT_A_PATH_FOR_YOU("Okay, this is starting to feel like it is not a great career path for you."),
+	COLOR_BLIND("You're either color blind or weren't paying attentoin in grade school art. Either way, you should understand it to be in this field."),
+	TWINKIE_WITH_BOZO("You should just go to the cafeteria and grab a twinkie whith that bozo who has no desire to learn anything new."),
+	DRAWING_SKILLS_IMPORTANT("Perfect. Drawing skills are mucho importanto to being a successful graphic designer."),
+	SENSE_OF_BALANCE_SKILL("Nice. A sense of balance between objects is a great skill to have."),
+	WOULD_BE_NICE_BUT_OK("Did I mention it would be nice if you could draw, but passion for design is good."),
+	NOW_TALKIN("Now were talkin."),
+	GOOD_IDEAS("Sometimes just having great ideas can get you places."),
+	HEAD_TO_CAFETERIA("This might be a good point to head to the cafeteria and get yourself a ho ho."),
+	UGH_NEED_TO_TRANSLATE("Ugh... You really nedd to be able to translate information into visual form."),
+	ROCK_STAR("Rock star so far."),
+	HOSTESS_PRODUCTS("I hear there is a sale on Hostess products in the cafeteria."),
+	CREATIVE_MANAGER("You might be cut out to be a creative manager in a studio or agency, but sotty, graphic design is not your thing."),
+	DELICIOUS_TREAT("I might say go to the cafeteria to grab a delicious treat but you wouldn't listeb anyway."),
+	NICE_SAVE("Nice save."),
+	TROUBLE("This could be trouble."),
+	NOT_EVERYONE("Good. Not everyone is going to love your every idea."),
+	SEE_SHRINK("You need to see a shrink."),
+	GET_OVER_BAD_SELF("Then suck it up, get over your bad self, and move on."),
+	NOT_GOOD("Uh oh... Not good."),
+	THINGS_GOING_ON("Sweet. You might have 5 to 10 things going on all at the same time."),
+	LOST_AT_THE_END("WOW! You los it there at the end. And th finish line was so close!"),
+	GET_SOMETHING_DONE("At least you can something done, even if it is one thing at a time."),
+	EASY_ROUTE("Well, you can get by by taking the easy route, but you might be frustrated"),
+	SIMPLIEST_MOST_DIFFICULT("Perfect! Sometimes the simpliest looking projects can be the most difficult."),
+	NOT_CAREER_FOR_YOU("This is not the career for you. But I know some hp cats in the fine arts growing dreads."),
+	MUSCLE_THROUGH("Well then maybe you can just suck it up and muscle through it."),
+	GET_OUT_OF_YOUR_SHELL("You might want to figure out a how to get out of your shell."),
+	HAVE_ISSUES("You might have issues. Are you hungry for a cakey treat?"),
+	INTERPERSONAL_SKILLS("Interpersonal skills are so important in a communications field like this."),
+	DONT_WORRY("Don't worry... You will once you get going in this career!"),
+	FREAK_OF_NATURE("Okay. You are just a freak of nature."),
+	GRAPHIC_DESIGNER("THEN YOU TOO CAN BE A GRAPHIC DESIGNER! :)");
 	
 	info : String
 end
@@ -30,4 +81,4 @@ function void askQuestion(Questions question, KieRuntime krt) {
 
 function void showInfo(Infos info) {
 	Interface.showInfo(info.getInfo());
-} 
+}
